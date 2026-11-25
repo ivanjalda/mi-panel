@@ -1,0 +1,15 @@
+{
+  "name": "Mi Panel",
+  "short_name": "Mi Panel",
+  "description": "Mi motor: negocios, cuentas, bienestar y redes",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0d0f14",
+  "theme_color": "#0d0f14",
+  "lang": "es",
+  "icons": [
+    { "src": "icono.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
