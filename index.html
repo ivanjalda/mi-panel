@@ -7,7 +7,8 @@
 <meta name="robots" content="noindex, nofollow">
 <link rel="manifest" href="manifest.json">
 <link rel="icon" href="icono.svg" type="image/svg+xml">
-<link rel="apple-touch-icon" href="icono.svg">
+<link rel="apple-touch-icon" href="icono-180.png">
+<meta name="apple-mobile-web-app-title" content="Mi Panel">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <title>Mi Panel</title>
 <style>
@@ -59,6 +60,7 @@ nav button.activo{color:var(--o)}
   <label><input id="recordar" type="checkbox" checked style="width:auto;margin:0"> Recordar en este móvil</label>
   <button class="boton" id="botonEntrar">Entrar</button>
   <p id="error" class="rojo" style="margin-top:12px"></p>
+  <button class="boton gris oculto" id="instalar">📲 Instalar como app</button>
 </section>
 
 <div id="app" class="oculto">
@@ -188,6 +190,9 @@ function pintar(){
 $("#botonEntrar").onclick=()=>entrar($("#clave").value,$("#recordar").checked);
 $("#clave").addEventListener("keydown",e=>{if(e.key==="Enter")$("#botonEntrar").click()});
 const guardada=leerLocal("panel_clave"); if(guardada) entrar(guardada,true);
+let aviso=null;
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();aviso=e;$("#instalar").classList.remove("oculto")});
+$("#instalar").onclick=async()=>{if(aviso){aviso.prompt();await aviso.userChoice;aviso=null;$("#instalar").classList.add("oculto")}};
 if("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
 </script>
 </body>
